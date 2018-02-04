@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ImageminWebpackPlugin = require('imagemin-webpack-plugin')
 const outPath = path.resolve(__dirname, './dist')
 
 module.exports = {
@@ -79,6 +80,7 @@ module.exports = {
         new CopyWebpackPlugin([
             {from: './src/static', to: path.join(outPath, './static')}
         ]),
+        new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
         new webpack.DefinePlugin({
             'globalEnv': {
                 NODE_ENV: JSON.stringify('production'),
