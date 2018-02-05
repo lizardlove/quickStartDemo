@@ -30,9 +30,8 @@ app.use(webpackHotMiddleware(temp))
 
 app.use('/', express.static(`${__dirname}/src`))
 
-app.get('/', (req, res) => {
-    res.sendFile(`${__dirname}/src/index.html`)
-})
+app.use(express.static("src/public"))
+app.use('/hello', require("./dist/controller/app"))
 
 app.listen(port, error => {
     if (error) {

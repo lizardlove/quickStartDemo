@@ -5,13 +5,13 @@ module.exports = {
     entry: {
         main: [
             'webpack-hot-middleware/client?path=http://localhost:2019/__webpack_hmr&reload=true',
-            path.resolve(__dirname, `./src/index.js`)
+            path.resolve(__dirname, `./src/public/index.js`)
         ],
         // vendor: [] //引入第三方库
     },
 
     output: {
-        path: path.resolve(__dirname, 'src'),
+        path: path.resolve(__dirname, 'src/public'),
         filename: 'main.js',
         publicPath: '/'
     },

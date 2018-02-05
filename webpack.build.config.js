@@ -5,14 +5,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin')
-const outPath = path.resolve(__dirname, './dist')
+const outPath = path.resolve(__dirname, './dist/public')
 
 module.exports = {
 
     entry: path.resolve(__dirname, `./src/index.js`),
 
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist/public'),
         filename: 'main-[hash].js',
         publicPath: './'
     },
@@ -78,7 +78,7 @@ module.exports = {
             {root: outPath}
         ),
         new CopyWebpackPlugin([
-            {from: './src/static', to: path.join(outPath, './static')}
+            {from: './src/public/assets', to: path.join(outPath, './assets')}
         ]),
         new ImageminWebpackPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
         new webpack.DefinePlugin({
@@ -89,7 +89,7 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/public/index.html'
         })
     ]
 }
