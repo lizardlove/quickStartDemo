@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "babel-node server.dev.js",
-    "build": "./node_modules/.bin/webpack -p --config webpack.build.config.js"
+    "dev": "gulp development",
+    "build": "gulp production"
   },
   "repository": {
     "type": "git",

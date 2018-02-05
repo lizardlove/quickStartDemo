@@ -4,15 +4,15 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ImageminWebpackPlugin = require('imagemin-webpack-plugin')
-const outPath = path.resolve(__dirname, './dist/public')
+const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default
+const outPath = path.resolve(__dirname, './build/public')
 
 module.exports = {
 
-    entry: path.resolve(__dirname, `./src/index.js`),
+    entry: path.resolve(__dirname, `./src/public/index.js`),
 
     output: {
-        path: path.resolve(__dirname, 'dist/public'),
+        path: path.resolve(__dirname, 'build/public'),
         filename: 'main-[hash].js',
         publicPath: './'
     },
@@ -48,24 +48,24 @@ module.exports = {
                 }),
                 exclude: /node_modules/
             },
-            // {
-            //     test: /\.(png|jpg|gif|svg)$/,
-            //     use: {
-            //         loader: 'url-loader',
-            //         query: {
-            //             limit: 10000
-            //         }
-            //     }
-            // },
-            // {
-            //     test: /\.woff|\.woff2|\.eot|\.ttf/,
-            //     use: {
-            //         loader: 'url-loader',
-            //         query: {
-            //             limit: 5000
-            //         }
-            //     }
-            // }
+            {
+                test: /\.(png|jpg|gif|svg)$/,
+                use: {
+                    loader: 'url-loader',
+                    query: {
+                        limit: 10000
+                    }
+                }
+            },
+            {
+                test: /\.woff|\.woff2|\.eot|\.ttf/,
+                use: {
+                    loader: 'url-loader',
+                    query: {
+                        limit: 5000
+                    }
+                }
+            }
         ]
     },
     plugins: [

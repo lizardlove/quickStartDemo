@@ -14,7 +14,7 @@ config.plugins.push(
 
 const express = require('express')
 const app = new express();
-const port = 2019
+const port = require("./config.json").port
 
 const temp = webpack(config)
 
@@ -28,10 +28,9 @@ app.use(webpackDevMiddleware(temp, {
 
 app.use(webpackHotMiddleware(temp))
 
-app.use('/', express.static(`${__dirname}/src`))
+app.use('/', express.static(`${__dirname}/src/public`))
 
-app.use(express.static("src/public"))
-app.use('/hello', require("./dist/controller/app"))
+app.use('/api', require("./dist/controller/controller"))
 
 app.listen(port, error => {
     if (error) {

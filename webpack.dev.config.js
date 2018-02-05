@@ -1,10 +1,11 @@
 const webpack = require('webpack')
 const path = require('path')
+const port = require("./config.json").port
 
 module.exports = {
     entry: {
         main: [
-            'webpack-hot-middleware/client?path=http://localhost:2019/__webpack_hmr&reload=true',
+            `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr&reload=true`,
             path.resolve(__dirname, `./src/public/index.js`)
         ],
         // vendor: [] //引入第三方库
